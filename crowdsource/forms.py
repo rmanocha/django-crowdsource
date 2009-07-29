@@ -80,11 +80,25 @@ class CrowdSourcedEntryForm(CrowdSourcedEntrySecurityForm):
         super(CrowdSourcedEntryForm, self).__init__(*args, **kwargs)
 
         for csobj in CrowdSourcedObject.objects.all():
-            qs = CrowdSourcedEntry.objects.filter(csobj = csobj, content_type = ContentType.objects.get_for_model(self.target_object), object_id = self.target_object._get_pk_val())
+            qs = CrowdSourcedEntry.objects.filter(
+                csobj = csobj,
+                content_type = ContentType.objects.get_for_model(self.target_object),
+                object_id = self.target_object._get_pk_val()
+            )
             if qs:
-                self.fields[csobj.name] = forms.URLField(label = csobj.help_text, required = False, verify_exists = True, widget = forms.TextInput(attrs = {'disabled' : True}), initial = qs.get().url)
+                self.fields[csobj.name] = forms.URLField(
+                        label = csobj.help_text,
+                        required = False,
+                        verify_exists = True,
+                        widget = forms.TextInput(attrs = {'disabled' : True}),
+                        initial = qs.get().url
+                )
             else: 
-                self.fields[csobj.name] = forms.URLField(label = csobj.help_text, required = False, verify_exists = True)
+                self.fields[csobj.name] = forms.URLField(
+                        label = csobj.help_text,
+                        required = False,
+                        verify_exists = True
+                )
 
     def clean_honeypot(self):
         value = self.cleaned_data["honeypot"]
