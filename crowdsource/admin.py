@@ -8,6 +8,6 @@ class CrowdSourcedObjectAdmin(admin.ModelAdmin):
 admin.site.register(CrowdSourcedObject, CrowdSourcedObjectAdmin)
 
 class CrowdSourcedEntryAdmin(admin.ModelAdmin):
-    pass
+    exclude = ('content_type', 'object_id')
 
 admin.site.register(CrowdSourcedEntry, CrowdSourcedEntryAdmin)
