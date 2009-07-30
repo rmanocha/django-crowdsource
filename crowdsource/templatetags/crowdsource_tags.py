@@ -3,7 +3,7 @@ from django.template.loader import render_to_string
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 
-from crowdsource.forms import CrowdSourcedEntryForm
+import crowdsource
 
 register = template.Library()
 
@@ -66,7 +66,7 @@ class CrowdSourcedEntryFormNode(template.Node):
     def get_form(self, context):
         ctype, object_id = self.get_target_ctype_pk(context)
         if object_id:
-            return CrowdSourcedEntryForm(ctype.get_object_for_this_type(pk = object_id))
+            return crowdsource.get_form()(ctype.get_object_for_this_type(pk = object_id))
         else:
             return None
 

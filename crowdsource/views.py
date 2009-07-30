@@ -6,7 +6,7 @@ from django.views.decorators.http import require_POST
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 
-from crowdsource.forms import CrowdSourcedEntryForm
+import crowdsource
 
 class CommentPostBadRequest(http.HttpResponseBadRequest):
     """
@@ -36,7 +36,7 @@ def post_csentry(request, next = None):
     except ObjectDoesNotExist:
         return CommentPostBadRequest()
 
-    csentry_form = CrowdSourcedEntryForm(target, data = data)
+    csentry_form = crowdsource.get_form()(target, data = data)
 
     if csentry_form.is_valid():
         csentry_form.save()
