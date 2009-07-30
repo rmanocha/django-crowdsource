@@ -3,7 +3,10 @@ from django import forms
 
 from crowdsource.models import CrowdSourcedObject, CrowdSourcedEntry
 
-admin.site.register(CrowdSourcedObject)
+class CrowdSourcedObjectAdmin(admin.ModelAdmin):
+    prepoulated_fields = {'slug' : ('name', )}
+
+admin.site.register(CrowdSourcedObject, CrowdSourcedObjectAdmin)
 
 class CrowdSourcedEntryAdminForm(forms.ModelForm):
     url = forms.URLField(verify_exists = False)
