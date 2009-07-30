@@ -94,8 +94,13 @@ class RenderCrowdSourcedEntryFormNode(CrowdSourcedEntryFormNode):
     def render(self, context):
         ctype, object_id = self.get_target_ctype_pk(context)
         if object_id:
+            template_search_list = [
+                    "crowdsource/%s/%s/form.html" % (ctype.app_label, ctype.model),
+                    "crowdsource/%s/form.html" % ctype.app_label,
+                    "crowdsource/form.html"
+            ]
             context.push()
-            formstr = render_to_string('crowdsource/csentry_form.html', {"csentry_form" : self.get_form(context)}, context)
+            formstr = render_to_string(template_search_list, {"form" : self.get_form(context)}, context)
             context.pop()
             return formstr
         else:
