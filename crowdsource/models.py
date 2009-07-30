@@ -4,7 +4,7 @@ from django.contrib.contenttypes import generic
 
 class CrowdSourcedObject(models.Model):
     name = models.CharField(max_length = 100, verbose_name = u'The name of the object type we\'re defining', unique = True)
-    slug = models.SlugField(max_length = 100, verbose_name = u'Slug for the name')
+    slug = models.SlugField(max_length = 100, verbose_name = u'Slug for the name', unique = True)
     help_text = models.CharField(max_length = 200, verbose_name = u'Help Text for this object type')
 
     def __unicode__(self):

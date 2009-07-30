@@ -86,7 +86,7 @@ class CrowdSourcedEntryForm(CrowdSourcedEntrySecurityForm):
                 object_id = self.target_object._get_pk_val()
             )
             if qs:
-                self.fields[csobj.name] = forms.URLField(
+                self.fields[csobj.slug] = forms.URLField(
                         label = csobj.help_text,
                         required = False,
                         verify_exists = True,
@@ -94,7 +94,7 @@ class CrowdSourcedEntryForm(CrowdSourcedEntrySecurityForm):
                         initial = qs.get().url
                 )
             else: 
-                self.fields[csobj.name] = forms.URLField(
+                self.fields[csobj.slug] = forms.URLField(
                         label = csobj.help_text,
                         required = False,
                         verify_exists = True
@@ -111,7 +111,7 @@ class CrowdSourcedEntryForm(CrowdSourcedEntrySecurityForm):
             if self.cleaned_data[key]:
                 try:
                     CrowdSourcedEntry.objects.create(
-                        csobj = CrowdSourcedObject.objects.get(name = key),
+                        csobj = CrowdSourcedObject.objects.get(slug = key),
                         content_type = ContentType.objects.get_for_model(self.target_object),
                         object_id = self.target_object._get_pk_val(), 
                         url = self.cleaned_data[key]

@@ -4,7 +4,8 @@ from django import forms
 from crowdsource.models import CrowdSourcedObject, CrowdSourcedEntry
 
 class CrowdSourcedObjectAdmin(admin.ModelAdmin):
-    prepoulated_fields = {'slug' : ('name', )}
+    prepopulated_fields = {"slug": ("name",)}
+    list_display = ('name', 'help_text')
 
 admin.site.register(CrowdSourcedObject, CrowdSourcedObjectAdmin)
 
