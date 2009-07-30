@@ -10,13 +10,13 @@ class CrowdSourcedObject(models.Model):
         return self.name
 
 class CrowdSourcedEntry(models.Model):
-    csobj = models.ForeignKey(CrowdSourcedObject, verbose_name = u'The CrowdSourcedObject this is an entry for')
+    csobj = models.ForeignKey(CrowdSourcedObject, verbose_name = u'Entry for CrowdSourcedObject')
     content_type = models.ForeignKey(ContentType)
     object_id = models.IntegerField()
     related_object = generic.GenericForeignKey()
-    url = models.URLField()
+    url = models.URLField(verbose_name = u'The url for this entry')
     verified = models.BooleanField()
 
     def __unicode__(self):
-        return "Entry for %s for object %s is %s. Verification Status: %s" % (self.csobj, self.related_object, self.url, unicode(self.verified))
+        return "CrowdSource Entry for %s for object %s is %s. Verification Status: %s" % (self.csobj, self.related_object, self.url, unicode(self.verified))
 
