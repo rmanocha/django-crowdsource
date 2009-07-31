@@ -24,6 +24,10 @@ def get_form():
                 raise ImproperlyConfigured("The class defined in the CROWD_SOURCED_ENTRY_FORM_MODULE "\
                                 "setting cannot be imported. Make sure the CROWD_SOURCED_ENTRY_FORM_NAME "\
                                 "setting is correct.")
-        return cls
+            return cls
+        else:
+            raise ImproperlyConfigured("The CROWD_SOURCED_ENTRY_FORM_MODULE setting "\
+                            "has been defined, however the CROWD_SOURCED_ENTRY_FORM_NAME "\
+                            "setting has not. You should either define both, or neither.")
     else:
         return CrowdSourcedEntryForm
