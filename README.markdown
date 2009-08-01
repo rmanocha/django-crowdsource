@@ -7,6 +7,7 @@ As an example, say you have a list of objects representing the members of Congre
 ## Requirements
 
 python >= 2.4
+
 django >= 1.0
 
 ## Installation
@@ -37,6 +38,6 @@ The second setting defines the name of the form class to use (so CrowdSourcedEnt
 
 You will need to add crowdsource.urls to your global URLConf. For example:
 
-   (r'crowdsource/', include('crowdsource.urls')), 
+    (r'crowdsource/', include('crowdsource.urls')), 
 
 ## Usage Instructions
