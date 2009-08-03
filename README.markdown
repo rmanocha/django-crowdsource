@@ -2,7 +2,7 @@
 
 django-crowdsource (for the lack of a better name) is an application to allow the users of your site to enter custom defined (url)fields for any object on your site.
 
-As an example, say you have a list of objects representing the members of Congress. You can define fields such as Twitter stream, Home Page, Blog, Blog RSS Feed etc. django-crowdsource would then create a form for you which you can present to your users, allowing them to fill out one or all of these fields. These urls, upon the form's submission, will be saved to your database waiting to be verified by an admin.
+As an example, say you have a list of objects representing the members of Congress. You can define fields such as Twitter stream, Home Page, Blog, Blog RSS Feed etc. ``django-crowdsource`` would then create a form for you which you can present to your users, allowing them to fill out one or all of these fields. These urls, upon the form's submission, will be saved to your database waiting to be verified by an admin.
 
 ## Requirements
 
@@ -42,7 +42,7 @@ You will need to add crowdsource.urls to your global URLConf. For example:
 
 ## Usage Instructions
 
-django-crowdsource works, for the most part, the same as django.contrib.comments. Templatetags are used
+``django-crowdsource`` works, for the most part, the same as ``django.contrib.comments``. Templatetags are used
 to get a form object (or get the rendered form) and upon submission the relevant entries for the given
 object are created.
 
@@ -56,11 +56,11 @@ You now have two templatetags you can call. The first is
 	
 	{% get_crowdsource_entry for obj as csentry_form %}
 
-This tag will return a form object for ``obj`` as ``csentry_form``. You can then use csentry_form to render the form into your template. You can also call this templatetag like so:
+This tag will return a form object for ``obj`` as ``csentry_form``. You can then use ``csentry_form`` to render the form into your template. You can also call this templatetag like so:
 
 	{% get_crowdsource_entry for [app].[model] [object_id] as [varname] %}
 
-The other templatetag availabel is:
+The other templatetag available is:
 
 	{% render_crowdsource_entry for obj %}
 
