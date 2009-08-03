@@ -74,3 +74,12 @@ You can also call this tag like so:
 
 	{% render_crowdsource_entry for [app].[model] [object.id] %}
 
+This tag passes the ``form`` context variable to the template which can be used to render the form in whatever way you like.
+
+### URLS
+
+The form needs to be submitted to ``post-cs-entry``, so in your template, the form's action should be something like:
+
+	<form method="post" action="{% post-cs-entry %}">
+		{{ form }}
+	</form>
