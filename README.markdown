@@ -96,3 +96,5 @@ The form used by default is ``crowdsource.forms.CrowdSourcedEntryForm``. You can
 	CROWD_SOURCED_ENTRY_FORM_NAME
 
 See the settings section to see what each does. If you do define a custom form, you should make it inherit from ``crowdsource.forms.CrowdSourcedEntrySecurityForm`` which will take care of all housekeeping for you.
+
+By default, all url's saved by CrowdSourcedEntryForm are unverified (their existence is verified). You need to verify them by going into the admin and checking the Verified checkbox. You can change this behavior with a custom form.
