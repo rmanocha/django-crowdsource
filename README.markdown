@@ -85,3 +85,14 @@ The form needs to be submitted to ``post-cs-entry``, so in your template, the fo
 	<form method="post" action="{% post-cs-entry %}">
 		{{ form }}
 	</form>
+
+## Notes
+
+### Forms
+
+The form used by default is ``crowdsource.forms.CrowdSourcedEntryForm``. You can customise this form by defining two settings:
+
+	CROWD_SOURCED_ENTRY_FORM_MODULE
+	CROWD_SOURCED_ENTRY_FORM_NAME
+
+See the settings section to see what each does. If you do define a custom form, you should make it inherit from ``crowdsource.forms.CrowdSourcedEntrySecurityForm`` which will take care of all housekeeping for you.
