@@ -41,3 +41,36 @@ You will need to add crowdsource.urls to your global URLConf. For example:
     (r'crowdsource/', include('crowdsource.urls')), 
 
 ## Usage Instructions
+
+django-crowdsource works, for the most part, the same as django.contrib.comments. Templatetags are used
+to get a form object (or get the rendered form) and upon submission the relevant entries for the given
+object are created.
+
+### Templatetags
+
+Start with loading the templatetags inside your templates
+
+	{% load crowdsource_tags %}
+
+You now have two templatetags you can call. The first is
+	
+	{% get_crowdsource_entry for obj as csentry_form %}
+
+This tag will return a form object for ``obj`` as ``csentry_form``. You can then use csentry_form to render the form into your template. You can also call this templatetag like so:
+
+	{% get_crowdsource_entry for [app].[model] [object_id] as [varname] %}
+
+The other templatetag availabel is:
+
+	{% render_crowdsource_entry for obj %}
+
+This tag renders the relevant form for obj. The template search path to render the form is:
+
+	'crowdsource/{{ app_label }}/{{ model }}/form.html',
+	'crowdsource/{{ app_label }}/form.html',
+	'crowdsource/form.html'	
+
+You can also call this tag like so:
+
+	{% render_crowdsource_entry for [app].[model] [object.id] %}
+
