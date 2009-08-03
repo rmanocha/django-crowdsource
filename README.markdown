@@ -4,6 +4,8 @@ django-crowdsource (for the lack of a better name) is an application to allow th
 
 As an example, say you have a list of objects representing the members of Congress. You can define fields such as Twitter stream, Home Page, Blog, Blog RSS Feed etc. ``django-crowdsource`` would then create a form for you which you can present to your users, allowing them to fill out one or all of these fields. These urls, upon the form's submission, will be saved to your database waiting to be verified by an admin.
 
+``django-crowdsource`` is released under the BSD license. See License.txt for more details.
+
 ## Requirements
 
 python >= 2.4
