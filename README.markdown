@@ -31,8 +31,8 @@ Additionally, if you want to define a custom form (instead of using crowdsource.
     'CROWD_SOURCED_ENTRY_FORM_MODULE' = 'custom form module'
     'CROWD_SOURCED_ENTRY_FORM_NAME'   = 'custom form class name'
 
-The first setting defines the module where the custom form class lives (so crowdsource.forms for example).
-The second setting defines the name of the form class to use (so CrowdSourcedEntryForm for example).
+The first setting defines the module where the custom form class lives (so ``crowdsource.forms`` for example).
+The second setting defines the name of the form class to use (so ``CrowdSourcedEntryForm`` for example).
 
 ### urls.py
 
