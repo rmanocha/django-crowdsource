@@ -54,7 +54,7 @@ Start with loading the templatetags inside your templates
 
 	{% load crowdsource_tags %}
 
-You now have two templatetags you can call. The first is
+You now have two templatetags you can call to get the form object. The first is
 	
 	{% get_crowdsource_entry for obj as csentry_form %}
 
@@ -77,6 +77,16 @@ You can also call this tag like so:
 	{% render_crowdsource_entry for [app].[model] [object.id] %}
 
 This tag passes the ``form`` context variable to the template which can be used to render the form in whatever way you like.
+
+Finally, to get a list of verified ``CrowdSourcedEntry`` instances for a given model, you should call the following tag:
+
+    {% get_crowdsourcedentry_list for obj as varname %}
+
+This will add ``varname`` to the current context. ``varname`` will contain a list of all verified ``CrowdSourcedEntry`` entries for the given object. You can then use the ``for`` tag to go through and display them.
+
+You can also call the ``get_crowdsourcedentry_list`` tag like so:
+
+    {% get_crowdsourcedentry_list for [app].[model] [object.id] as varname %}
 
 ### URLS
 
