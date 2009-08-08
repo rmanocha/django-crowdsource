@@ -56,15 +56,15 @@ Start with loading the templatetags inside your templates
 
 You now have two templatetags you can call to get the form object. The first is
 	
-	{% get_crowdsource_entry for obj as csentry_form %}
+	{% get_crowdsourcedentry_form for obj as csentry_form %}
 
 This tag will return a form object for ``obj`` as ``csentry_form``. You can then use ``csentry_form`` to render the form into your template. You can also call this templatetag like so:
 
-	{% get_crowdsource_entry for [app].[model] [object_id] as [varname] %}
+	{% get_crowdsourcedentry_form for [app].[model] [object_id] as [varname] %}
 
 The other templatetag available is:
 
-	{% render_crowdsource_entry for obj %}
+	{% render_crowdsourcedentry_form for obj %}
 
 This tag renders the relevant form for obj. The template search path to render the form is:
 
@@ -74,7 +74,7 @@ This tag renders the relevant form for obj. The template search path to render t
 
 You can also call this tag like so:
 
-	{% render_crowdsource_entry for [app].[model] [object.id] %}
+	{% render_crowdsourcedentry_form for [app].[model] [object.id] %}
 
 This tag passes the ``form`` context variable to the template which can be used to render the form in whatever way you like.
 
