@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 
 import crowdsource
+from crowdsource.models import CrowdSourcedEntry
 
 register = template.Library()
 
@@ -107,11 +108,37 @@ class RenderCrowdSourcedEntryFormNode(CrowdSourcedEntryFormNode):
         else:
             return ''
 
+class CrowdSourcedEntryListNode(CrowdSourcedEntryFormNode):
+    def get_context_value_from_queryset(self, context, qs):
+        return list(qs)
+
+    def get_query_set(self, context):
+        ctype, object_id = self.get_target_ctype_pk(context)
+        if not object_id:
+            return CrowdSourcedEntry.objects.none()
+
+        qs = CrowdSourcedEntry.objects.filter(
+                content_type = ctype,
+                object_id = object_id,
+                verified = True
+        )
+
+        return qs
+
+    def render(self, context):
+        qs = self.get_query_set(context)
+        context[self.as_varname] = self.get_context_value_from_queryset(context, qs)
+        return ''
+
 def get_crowdsourcedentry_form(parser, token):
     return CrowdSourcedEntryFormNode.handle_token(parser, token)
 
 def render_crowdsourcedentry_form(parser, token):
     return RenderCrowdSourcedEntryFormNode.handle_token(parser, token)
 
+def get_crowdsourcedentry_list(parser, token):
+    return CrowdSourcedEntryListNode.handle_token(parser, token)
+
 register.tag(get_crowdsourcedentry_form)
 register.tag(render_crowdsourcedentry_form)
+register.tag(get_crowdsourcedentry_list)
