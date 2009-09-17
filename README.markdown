@@ -110,9 +110,9 @@ See the settings section to see what each does. If you do define a custom form, 
 By default, all url's saved by CrowdSourcedEntryForm are unverified (their existence is verified). You need to verify them by going into the admin and checking the Verified checkbox. You can change this behavior with a custom form.
 
 ###View Redirection
-After a succesfull entry is made, ``django-crowdsource`` redirects the user back to the url specified by the ``next`` parameter specified as a get variable when data the data is sent to the view.
-So, your form action should look something like:
+After a succesfull entry is made, ``django-crowdsource`` redirects the user back to the url specified by the ``next`` parameter specified as a POST variable when data the data is sent to the view.
+So, your form fields should contain something like:
 
-    <form method="post" action="{% post-cs-entry %}?next={{ my_next_url }}">
+    <input type="hidden" name="next" value="{{ my_next_url }}" />
 
 If no ``next`` parameter is specified, the user is redirected to the target model instance's URL (using it's get_absolute_url() method).
