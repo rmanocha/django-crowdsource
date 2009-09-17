@@ -43,7 +43,7 @@ def post_csentry(request, next = None):
         csentry_form.save()
         return redir_to_next(next, target)
     else:
-        request.user.message_set.create(message = "There was an error in the URL provided. Please enter it again")
+        #TODO: Something needs to go here, but can't figure out what
         return redir_to_next(next, target)
 
 post_csentry = require_POST(post_csentry)
