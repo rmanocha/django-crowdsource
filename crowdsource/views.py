@@ -37,15 +37,14 @@ def post_csentry(request, next = None):
         return CommentPostBadRequest()
 
     csentry_form = crowdsource.get_form()(target, data = data)
+    redir_to_next = lambda next, target: HttpResponseRedirect(next) if next else HttpResponseRedirect(target.get_absolute_url())
 
     if csentry_form.is_valid():
         csentry_form.save()
-        if next:
-            return HttpResponseRedirect(next)
-        else:
-            return HttpResponseRedirect(target.get_absolute_url())
+        return redir_to_next(next, target)
     else:
-        return CommentPostBadRequest()
+        request.user.message_set.create(message = "There was an error in the URL provided. Please enter it again")
+        return redir_to_next(next, target)
 
 post_csentry = require_POST(post_csentry)
 
