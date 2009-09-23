@@ -17,7 +17,7 @@ class CrowdSourcedEntryAdminForm(forms.ModelForm):
 
 class CrowdSourcedEntryAdmin(admin.ModelAdmin):
     list_display = ('get_csentry_related_object', 'csobj', 'url', 'verified')
-    list_filter = ('verified', )
+    list_filter = ('verified', 'csobj')
     form = CrowdSourcedEntryAdminForm
 
     def get_csentry_related_object(self, obj):
